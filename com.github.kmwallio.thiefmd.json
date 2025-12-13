@@ -1,7 +1,7 @@
 {
     "app-id": "com.github.kmwallio.thiefmd",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "44",
+    "runtime-version": "46",
     "sdk": "org.gnome.Sdk",
     "command": "com.github.kmwallio.thiefmd",
     "finish-args": [
@@ -36,8 +36,8 @@
             ],
             "sources": [{
                 "type": "archive",
-                "url": "https://download.gnome.org/sources/gtksourceview/4.8/gtksourceview-4.8.3.tar.xz",
-                "sha256": "c30019506320ca2474d834cced1e2217ea533e00eb2a3f4eb7879007940ec682"
+                "url": "https://download.gnome.org/sources/gtksourceview/4.8/gtksourceview-4.8.4.tar.xz",
+                "sha256": "7ec9d18fb283d1f84a3a3eff3b7a72b09a10c9c006597b3fbabbb5958420a87d"
             }]
         },
         "shared-modules/intltool/intltool-0.51.json",
@@ -172,12 +172,23 @@
                 "*.a"
             ],
             "buildsystem": "meson",
-            "sources": [{
-                "type": "git",
-                "url": "https://github.com/kmwallio/ThiefMD.git",
-                "tag": "v0.2.7",
-                "commit": "e654b302ce3d0945455bc923caac55967a9fda4e"
-            }]
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/kmwallio/ThiefMD.git",
+                    "tag": "v0.2.7",
+                    "commit": "e654b302ce3d0945455bc923caac55967a9fda4e"
+                },
+                {
+                    "type": "patch",
+                    "path": "fix-appdata.patch"
+                }
+            ],
+            "post-install": [
+                "mkdir -p /app/share/icons/hicolor/scalable/apps",
+                "mv /app/share/icons/hicolor/128x128/apps/${FLATPAK_ID}.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg",
+                "find /app/share/icons/hicolor -type f -not -path \"*scalable*\" -not -path \"*actions*\" -name \"*.svg\" -delete"
+            ]
         }
     ]
 }
