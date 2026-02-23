@@ -148,12 +148,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/kmwallio/ThiefMD.git",
-                    "tag": "v0.3.0",
-                    "commit": "75b8a5632a17af2eb4fb6141048393582ea0b0a7"
-                },
-                {
-                    "type": "patch",
-                    "path": "fix-appdata.patch"
+                    "tag": "v0.3.1",
+                    "commit": "325335ea8c6c343c9f89b0487ceb22c0ba5d6d73"
                 }
             ],
             "post-install": [
